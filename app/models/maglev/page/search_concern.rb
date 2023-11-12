@@ -27,7 +27,8 @@ module Maglev::Page::SearchConcern
 
     def search_path_clause(query, locale)
       path = Maglev::PagePath.arel_table[:value]
-      path.matches(query).and(path.eq(locale))
+      loc = Maglev::PagePath.arel_table[:locale]
+      path.matches(query).and(loc.eq(locale))
     end
 
     def search_title_node(locale)
